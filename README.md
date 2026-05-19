@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BriefAI
 
-## Getting Started
+**AI-powered daily newsletter subscription — 6 curated modules, every day.**
 
-First, run the development server:
+Stop drowning in AI news. BriefAI delivers 6 targeted newsletters in one daily digest:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **World Model** — Latest papers on world models, video generation, multimodal AI
+- **AI Safety** — Alignment research, governance, existential risk updates  
+- **Hacker News** — Top stories from YC's tech news aggregator
+- **Fund Tracker** — Daily AI/fund market moves and portfolio updates
+- **Horoscope** — Weekly astrological patterns for the week ahead
+- **Science** — Notable research across biology, physics, climate
+
+## Live Demo
+
+→ [https://brief-app-sand.vercel.app](https://brief-app-sand.vercel.app)
+
+## Tech Stack
+
+- **Next.js 16** (App Router, TypeScript, Tailwind CSS)
+- **SQLite** (better-sqlite3, serverless-compatible)
+- **Stripe** (checkout, webhooks — test mode)
+- **Hermes Agent** (cron-powered content generation pipeline)
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx           # Landing page
+│   ├── subscribe/page.tsx # Email waitlist form
+│   ├── dashboard/page.tsx # Subscriber archive
+│   └── api/
+│       ├── checkout/      # Stripe Checkout session
+│       └── webhook/       # Stripe webhook handler
+└── lib/
+    └── db.ts              # SQLite schema (subscribers + briefs)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build   # Production build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+Copy `.env.example` to `.env.local`:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp .env.example .env.local
+# Then fill in your Stripe keys and webhook secret
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+One-click deploy to Vercel:
 
-## Deploy on Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/polyglotszeng/brief-ai)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
